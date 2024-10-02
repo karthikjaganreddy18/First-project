@@ -2,7 +2,7 @@ const express = require("express");
 const dotEnv = require('dotenv');
 const app = express()
 const mongoose = require('mongoose');
-const PORT = 4000;
+const PORT = process.env.PORT || 4000;
 dotEnv.config();
 mongoose.connect(process.env.MONGO_URL)
 .then(()=>console.log("Mongodb connected successfully"))
@@ -12,7 +12,7 @@ mongoose.connect(process.env.MONGO_URL)
 app.listen(PORT, ()=>{
     console.log(`server started and running at ${PORT}`);
 })
-app.use('/home',(req,res)=>{
+app.use('/',(req,res)=>{
     res.send("<h1>Welcome to website")
 })
 
